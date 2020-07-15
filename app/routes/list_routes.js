@@ -1,9 +1,9 @@
 const express = require('express')
 const passport = require('passport')
 const List = require('./../models/list')
-// const customErrors = require('../../lib/custom_errors')
+const customErrors = require('../../lib/custom_errors')
 // we'll use this function to send 404 when non-existant document is requested
-// const handle404 = customErrors.handle404
+const handle404 = customErrors.handle404
 // we'll use this function to send 401 when a user tries to modify a resource
 // that's owned by someone else
 // const requireOwnership = customErrors.requireOwnership
@@ -18,7 +18,7 @@ const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
 
 // INDEX
-// GET /travel
+// GET /list
 router.get('/lists', requireToken, (req, res, next) => {
   List.find({'owner': req.user.id})
     .populate('list')
@@ -30,13 +30,21 @@ router.get('/lists', requireToken, (req, res, next) => {
 })
 
 // CREATE
-// POST /travel/
+// POST /list/
 router.post('/lists', requireToken, (req, res, next) => {
   req.body.list.owner = req.user.id
   List.create(req.body.list)
     .then(list => {
       res.status(201).json({ list: list.toObject() })
     })
+    .catch(next)
+})
+// SHOW
+// GET /list/:id
+router.get('/lists/:id', requireToken, (req, res, next) => {
+  List.findById(req.params.id)
+    .then(handle404)
+    .then(list => res.status(200).json({ list: list.toObject() }))
     .catch(next)
 })
 
