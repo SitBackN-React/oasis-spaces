@@ -6,10 +6,10 @@ const customErrors = require('../../lib/custom_errors')
 const handle404 = customErrors.handle404
 // we'll use this function to send 401 when a user tries to modify a resource
 // that's owned by someone else
-// const requireOwnership = customErrors.requireOwnership
+const requireOwnership = customErrors.requireOwnership
 // this is middleware that will remove blank fields from `req.body`, e.g.
 // { example: { title: '', text: 'foo' } } -> { example: { text: 'foo' } }
-// const removeBlanks = require('../../lib/remove_blank_fields')
+const removeBlanks = require('../../lib/remove_blank_fields')
 // passing this as a second argument to `router.<verb>` will make it
 // so that a token MUST be passed for that route to be available
 // it will also set `req.user`
@@ -45,6 +45,19 @@ router.get('/lists/:id', requireToken, (req, res, next) => {
   List.findById(req.params.id)
     .then(handle404)
     .then(list => res.status(200).json({ list: list.toObject() }))
+    .catch(next)
+})
+
+// UPDATE
+// PATCH /lists/:id
+router.patch('/lists/:id', requireToken, removeBlanks, (req, res, next) => {
+  delete req.body.list.owner
+  List.findById(req.params.id)
+    .then(list => {
+      requireOwnership(req, list)
+      return list.updateOne(req.body.list)
+    })
+    .then(list => res.sendStatus(204).json({ list: list }))
     .catch(next)
 })
 
