@@ -61,4 +61,17 @@ router.patch('/lists/:id', requireToken, removeBlanks, (req, res, next) => {
     .catch(next)
 })
 
+// DESTROY
+// DELETE /list/:id
+router.delete('/lists/:id', requireToken, (req, res, next) => {
+  List.findById(req.params.id)
+    .then(handle404)
+    .then(list => {
+      requireOwnership(req, list)
+      list.deleteOne()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
 module.exports = router
