@@ -27,12 +27,20 @@
 Example Curl Request:
 ```sh
 #!/bin/sh
+
 API="http://localhost:4741"
 URL_PATH="/lists"
+
 curl "${API}${URL_PATH}" \
   --include \
   --request GET \
-  --header "Authorization: Bearer ${TOKEN}"
+  --header "Authorization: Bearer ${TOKEN}" \
+  --data '{
+    "list": {
+      "owner": "'"${OWNER}"'"
+    }
+  }'
+
 echo
 ```
 Example Terminal Command:
@@ -46,11 +54,11 @@ Content-Type: application/json; charset=utf-8
 {
   "lists": [
     {
-      "_id": "5e8ce58b144491a81bab1e62",
-      "title": "To-Do-List",
-      "description": "Today's to-do list.",
-      "createdAt": "2020-07-15T20:41:47.316Z",
-      "updatedAt": "2020-07-15T20:41:47.316Z",
+      "_id": "5f0f658df4df38e1f470c82e",
+      "name": "list",
+      "description": "new list",
+      "createdAt": "2020-07-15T20:22:37.605Z",
+      "updatedAt": "2020-07-15T20:22:37.605Z",
       "__v": 0
     }
   ]
@@ -71,26 +79,20 @@ echo
 ```
 Example Terminal Command:
 ```sh
-ID=5e8ce58b144491a81bab1e62 sh curl-scripts/lists/show.sh
+ID=5f0f658df4df38e1f470c82e sh curl-scripts/lists/show.sh
 ```
 Example API Response:
 ```md
 HTTP/1.1 200 OK
-X-Powered-By: Express
-Access-Control-Allow-Origin: http://localhost:7165
-Vary: Origin
 Content-Type: application/json; charset=utf-8
-Content-Length: 170
-ETag: W/"aa-YVtdydWaszA0ZL1HQ3Ran1h79zE"
-Date: Wed, 15 Jul 2020 20:45:03 GMT
-Connection: keep-alive
 {
   "list": {
-    "_id": "5e8ce58b144491a81bab1e62",
-    "name": "Leon",
-    "comment": "Noel",
-    "createdAt": "2020-07-15T20:41:47.316Z",
-    "updatedAt": "2020-07-15T20:41:47.316Z",
+    "_id": "5f0f658df4df38e1f470c82e",
+    "name":"list",
+    "description":"new list",
+    "owner":"5f0f057760a0f6c744fad7fd",
+    “createdAt”:“2020-07-15T21:26:42.910Z”,
+    “updatedAt”:“2020-07-15T21:26:42.910Z,
     "__v": 0
   }
 }
@@ -118,26 +120,20 @@ echo
 ```
 Example Terminal Command:
 ```sh
-FIRST="Leon" LAST="Noel" sh curl-scripts/lists/create.sh
+$ OWNER="5f0f057760a0f6c744fad7fd" TOKEN="f990f2f10882b01229349648be23c9bd" NAME="list" DESCRIPTION="new list" sh curl-scripts/lists/create.sh
 ```
 Example API Response:
 ```md
 HTTP/1.1 201 Created
-X-Powered-By: Express
-Access-Control-Allow-Origin: http://localhost:7165
-Vary: Origin
 Content-Type: application/json; charset=utf-8
-Content-Length: 170
-ETag: W/"aa-YVtdydWaszA0ZL1HQ3Ran1h79zE"
-Date: Wed, 15 Apr 2020 20:41:47 GMT
-Connection: keep-alive
 {
   "list": {
-    "_id": "5e8ce58b144491a81bab1e62",
-    "first_name": "Leon",
-    "last_name": "Noel",
-    "createdAt": "2020-07-15T20:41:47.316Z",
-    "updatedAt": "2020-07-15T20:41:47.316Z",
+    "_id": "$ OWNER="5f0f057760a0f6c744fad7fd" TOKEN="f990f2f10882b01229349648be23c9bd" NAME="list" DESCRIPTION="new list" sh curl-scripts/lists/create.sh",
+    "name":"list",
+    "description":"new list",
+    "owner":"5f0f057760a0f6c744fad7fd",
+    "createdAt":"2020-07-15T20:22:37.605Z",
+    "updatedAt":"2020-07-15T20:22:37.605Z",
     "__v": 0
   }
 }
