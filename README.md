@@ -21,7 +21,7 @@
 | POST   | `/lists`     | `lists#create` |
 | PATCH  | `/lists/:id` | `lists#update` |
 | DELETE | `/lists/:id` | `lists#destroy` |
-<<<<<<< HEAD
+
 
 ### GET /lists
 Example Curl Request:
@@ -199,4 +199,3 @@ HTTP/1.1 204 No Content
 ```
 ## List-Items
 =======
->>>>>>> 0d7c0be92413ddde4db5f4a1f3da0c53f330c65e
