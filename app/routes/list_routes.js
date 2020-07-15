@@ -33,7 +33,7 @@ router.get('/lists', requireToken, (req, res, next) => {
 // POST /travel/
 router.post('/lists', requireToken, (req, res, next) => {
   req.body.list.owner = req.user.id
-  List.create(req.body.travel)
+  List.create(req.body.list)
     .then(list => {
       res.status(201).json({ list: list.toObject() })
     })
