@@ -1,17 +1,13 @@
 const mongoose = require('mongoose')
 
-const itemSchema = require('./list')
-
-const listSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
+  note: {
+    type: String
   },
-  items: [itemSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -20,4 +16,5 @@ const listSchema = new mongoose.Schema({
 }, {
   timestamps: true
 })
-module.exports = mongoose.model('List', listSchema)
+
+module.exports = itemSchema
