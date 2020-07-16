@@ -3,7 +3,7 @@
 API="http://localhost:4741"
 URL_PATH="/lists"
 
-curl "${API}${URL_PATH}/${ID}" \
+curl "${API}${URL_PATH}/${LIST_ID}/items/${ITEM_ID}" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
@@ -11,7 +11,8 @@ curl "${API}${URL_PATH}/${ID}" \
 --data '{
     "item": {
       "name": "'"${NAME}"'",
-      "comment": "'${COMMENT}'"
+      "note": "'"${NOTE}"'",
+      "owner": "'"${OWNER}"'"
     }
   }'
 
