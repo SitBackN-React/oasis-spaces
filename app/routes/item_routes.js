@@ -14,10 +14,10 @@ const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 
 // CREATE new item info
-router.post('/items', requireToken, (req, res, next) => {
+router.post('/lists/:listId', requireToken, (req, res, next) => {
   req.body.item.owner = req.user.id
   const itemData = req.body.item
-  const listId = itemData.listId
+  const listId = req.params.listId
 
   List.findById(listId)
     .then(handle404)
@@ -29,19 +29,6 @@ router.post('/items', requireToken, (req, res, next) => {
     .catch(next)
 })
 module.exports = router
-
-// INDEX show all items
-// router.get('/lists/:listId/items', requireToken, (req, res, next) => {
-//   const listId = req.params.listId
-//
-//   List.findById(listId)
-//     .populate('items')
-//     .then(items => {
-//       return items.map(item => item.toObject())
-//     })
-//     .then(items => res.status(200).json({items: items}))
-//     .catch(next)
-// })
 
 // SHOW show one item
 router.get('/lists/:listId/items/:itemId', requireToken, (req, res, next) => {
@@ -76,4 +63,20 @@ router.patch('/lists/:listId/items/:itemId', requireToken, removeBlanks, (req, r
     .catch(next)
 })
 
+// DELETE single item
+router.delete('/lists/:listId/items/:itemId', requireToken, (req, res, next) => {
+  const listId = req.params.listId
+  // const itemData = req.body.item
+  const itemId = req.params.itemId
+
+  List.findById(listId)
+    .then(handle404)
+    .then(list => {
+      requireOwnership(req, list)
+      list.items.id(itemId).remove()
+      return list.save()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
 module.exports = router

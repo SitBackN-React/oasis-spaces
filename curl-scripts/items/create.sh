@@ -1,9 +1,9 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/items"
+URL_PATH="/lists"
 
-curl "${API}${URL_PATH}" \
+curl "${API}${URL_PATH}/${LIST_ID}" \
   --include \
   --request POST \
   --header "Content-Type: application/json" \
@@ -12,7 +12,6 @@ curl "${API}${URL_PATH}" \
     "item": {
       "name": "'"${NAME}"'",
       "note": "'"${NOTE}"'",
-      "listId": "'"${LIST_ID}"'",
       "owner": "'"${OWNER}"'"
     }
   }'
