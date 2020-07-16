@@ -28,5 +28,33 @@ router.post('/items', requireToken, (req, res, next) => {
     .then(list => res.status(201).json({list: list}))
     .catch(next)
 })
+module.exports = router
+
+// INDEX show all items
+// router.get('/lists/:listId/items', requireToken, (req, res, next) => {
+//   const listId = req.params.listId
+//
+//   List.findById(listId)
+//     .populate('items')
+//     .then(items => {
+//       return items.map(item => item.toObject())
+//     })
+//     .then(items => res.status(200).json({items: items}))
+//     .catch(next)
+// })
+
+// SHOW show one item
+router.get('/lists/:listId/items/:itemId', requireToken, (req, res, next) => {
+  const listId = req.params.listId
+  const itemId = req.params.itemId
+  List.findById(listId)
+    .then(handle404)
+    .then(list => {
+      let item = list.items.id(itemId)
+      item = handle404(item)
+      res.status(200).json({item: item})
+    })
+    .catch(next)
+})
 
 module.exports = router
