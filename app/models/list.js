@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const listItemSchema = require('./listItem')
+const itemSchema = require('./list')
 
 const listSchema = new mongoose.Schema({
   name: {
@@ -11,7 +11,7 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  listItems: [listItemSchema],
+  items: [itemSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

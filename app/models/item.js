@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const listItemSchema = new mongoose.Schema({
+const itemSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -17,4 +17,4 @@ const listItemSchema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = listItemSchema
+module.exports = itemSchema

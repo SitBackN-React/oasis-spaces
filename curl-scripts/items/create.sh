@@ -1,7 +1,7 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/list-items"
+URL_PATH="/items"
 
 curl "${API}${URL_PATH}" \
   --include \
@@ -11,7 +11,9 @@ curl "${API}${URL_PATH}" \
   --data '{
     "item": {
       "name": "'"${NAME}"'",
-      "comment": "'"${COMMENT}"'"
+      "note": "'"${NOTE}"'",
+      "listId": "'"${LIST_ID}"'",
+      "owner": "'"${OWNER}"'"
     }
   }'
 
