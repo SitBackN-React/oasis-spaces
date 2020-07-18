@@ -25,7 +25,7 @@ router.get('/lists', requireToken, (req, res, next) => {
     .then(list => {
       return list.map(list => list.toObject())
     })
-    .then(list => res.status(200).json({ list: list }))
+    .then(lists => res.status(200).json({ lists: lists }))
     .catch(next)
 })
 
