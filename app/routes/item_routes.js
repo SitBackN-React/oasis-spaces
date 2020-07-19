@@ -45,7 +45,7 @@ router.get('/lists/:listId/items/:itemId', requireToken, (req, res, next) => {
 })
 
 // UPDATE item info
-router.patch('/lists/:listId/items/:itemId', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/lists/:listId/items/:itemId/edit-item', requireToken, removeBlanks, (req, res, next) => {
   delete req.body.item.owner
 
   const itemId = req.params.itemId
