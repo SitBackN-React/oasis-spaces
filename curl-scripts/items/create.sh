@@ -11,8 +11,7 @@ curl "${API}${URL_PATH}/${LIST_ID}" \
   --data '{
     "item": {
       "name": "'"${NAME}"'",
-      "note": "'"${NOTE}"'",
-      "owner": "'"${OWNER}"'"
+      "note": "'"${NOTE}"'"
     }
   }'
 
