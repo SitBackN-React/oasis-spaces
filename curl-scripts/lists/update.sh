@@ -11,7 +11,7 @@ curl "${API}${URL_PATH}/${ID}" \
 --data '{
     "list": {
       "name": "'"${NAME}"'",
-      "description": "'${DESCRIPTION}'"
+      "description": "'"${DESCRIPTION}"'"
     }
   }'
 

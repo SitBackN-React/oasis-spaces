@@ -1,9 +1,9 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/list-items"
+URL_PATH="/lists"
 
-curl "${API}${URL_PATH}/${ID}" \
+curl "${API}${URL_PATH}/${LIST_ID}/items/${ITEM_ID}/edit-item" \
   --include \
   --request PATCH \
   --header "Content-Type: application/json" \
@@ -11,7 +11,7 @@ curl "${API}${URL_PATH}/${ID}" \
 --data '{
     "item": {
       "name": "'"${NAME}"'",
-      "comment": "'${COMMENT}'"
+      "note": "'"${NOTE}"'"
     }
   }'
 
