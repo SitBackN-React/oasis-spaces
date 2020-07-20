@@ -1,7 +1,7 @@
 # Oasis Spaces App
+Oasis Spaces is designed to provide users the ability to create and track their lists in order to organize their lives. Users can create different kinds of lists ranging from to-do lists to bucket lists. Once an item or list is completed, users can check it off.
 
 ## Links
-- Back End URL:
 - Deployed Application:
 - Front End Repository: https://github.com/SitBackN-React/oasis-spaces-client
 
@@ -13,10 +13,11 @@
 - Mongoose
 - MongoDB
 - cURL Scripts
+- -Heroku
 
 ## Planning
-
-## Unsolved Problems
+As a team we started by creating a team culture code and decided how to approach the back end features of our application.
+We created guidelines for the team and studied scrum in order to implement it each day. We practiced using git more in depth in order to use the best form of version control. We created our user model and list schema, and then created our item subdocument. We created cURL scripts for each of our CRUD actions for both our lists and our items. We tested each CRUD action with our cURL scripts. We then proceeded to build our routes for both lists and items. As we built our routes, we added ownership to each route in order for the user to only be able to use CRUD on their lists and items. Lastly, we deployed this back end using Heroku.
 
 ## API Information
 ### Lists
