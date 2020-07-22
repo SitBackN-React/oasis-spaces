@@ -11,6 +11,10 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  checkmark: {
+    type: Boolean,
+    default: false
+  },
   items: [itemSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
