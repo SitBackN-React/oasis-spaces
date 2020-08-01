@@ -74,4 +74,17 @@ router.delete('/lists/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
+// UPDATE
+// PATCH /lists/:id
+router.patch('/lists/:id/checkmark', requireToken, removeBlanks, (req, res, next) => {
+  delete req.body.list.owner
+  List.findById(req.params.id)
+    .then(list => {
+      requireOwnership(req, list)
+      return list.updateOne(req.body.list)
+    })
+    .then(list => res.sendStatus(204))
+    .catch(next)
+})
+
 module.exports = router
