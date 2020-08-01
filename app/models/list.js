@@ -1,7 +1,7 @@
+
 const mongoose = require('mongoose')
 
 const itemSchema = require('./item')
-const checkmarkSchema = require('./checkmark')
 
 const listSchema = new mongoose.Schema({
   name: {
@@ -12,7 +12,10 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  checkmark: checkmarkSchema,
+  checkmark: {
+    type: Boolean,
+    default: false
+  },
   items: [itemSchema],
   owner: {
     type: mongoose.Schema.Types.ObjectId,

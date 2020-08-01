@@ -1,7 +1,6 @@
 const express = require('express')
 const passport = require('passport')
 const List = require('./../models/list')
-const Checkmark = require('./../models/checkmark')
 const customErrors = require('../../lib/custom_errors')
 // we'll use this function to send 404 when non-existant document is requested
 const handle404 = customErrors.handle404
