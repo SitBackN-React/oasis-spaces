@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose')
 
 const itemSchema = require('./item')
@@ -10,6 +11,10 @@ const listSchema = new mongoose.Schema({
   description: {
     type: String,
     required: true
+  },
+  checkmark: {
+    type: Boolean,
+    default: false
   },
   items: [itemSchema],
   owner: {
