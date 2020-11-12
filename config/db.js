@@ -5,8 +5,7 @@ const mongooseBaseName = 'oasis-spaces'
 
 // create the mongodb uri for development and test
 const database = {
-  // development: `mongodb://localhost/${mongooseBaseName}-development`,
-  development: `mongodb+srv://huangc909:3ZH92cLv3aHLXOOj@cluster1.rjgmh.mongodb.net/${mongooseBaseName}-development`,
+  development: `mongodb://localhost/${mongooseBaseName}-development`,
   test: `mongodb://localhost/${mongooseBaseName}-test`
 }
 
@@ -14,8 +13,8 @@ const database = {
 // select DB based on whether a test file was executed before `server.js`
 const localDb = process.env.TESTENV ? database.test : database.development
 
-// Environment variable MONGODB_URI will be available in
+// Environment variable DB_URI will be available in
 // heroku production evironment otherwise use test or development db
-const currentDb = process.env.MONGODB_URI || localDb
+const currentDb = process.env.DB_URI || localDb
 
 module.exports = currentDb
