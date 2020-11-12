@@ -5,7 +5,8 @@ const mongooseBaseName = 'oasis-spaces'
 
 // create the mongodb uri for development and test
 const database = {
-  development: `mongodb://localhost/${mongooseBaseName}-development`,
+  // development: `mongodb://localhost/${mongooseBaseName}-development`,
+  development: `mongodb+srv://huangc909:3ZH92cLv3aHLXOOj@cluster1.rjgmh.mongodb.net/${mongooseBaseName}-development`,
   test: `mongodb://localhost/${mongooseBaseName}-test`
 }
 
