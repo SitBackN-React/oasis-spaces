@@ -2,7 +2,7 @@
 Oasis Spaces is designed to provide users the ability to create and track their lists in order to organize their lives. Users can create different kinds of lists ranging from to-do lists to bucket lists. Once an item or list is completed, users can check it off.
 
 ## Links
-- Deployed Application:
+- Deployed Application: https://sitbackn-react.github.io/oasis-spaces-client/#/
 - Front End Repository: https://github.com/SitBackN-React/oasis-spaces-client
 
 ## ERD
